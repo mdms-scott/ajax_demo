@@ -4,8 +4,23 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
+  def show
+    @item = Item.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @item.to_json }
+    end
+  end
+
   def create
-    @item = Item.create(item_params)
+    # if @item = Item.create(item_params)
+    @item = Item.new(item_params)
+    if @item.save
+    else
+      error = @item.errors.first.join(' ').humanize
+      respond_to do |format|
+        format.json { render json: error.to_json, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
