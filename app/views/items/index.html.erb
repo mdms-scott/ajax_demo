@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Items</h1>
+      <ul id="items_list">
+        <%= render 'items_list', items: @items %>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="form_container">
+        <%= render 'new_item' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="search_container">
+        <form id="search_form">
+          <div class="form-inline">
+            <label for="search_item_name">Search for:</label>
+            <%= text_field_tag :search_item_name, '', class: 'form-control' %>
+            <a id="search_item_button" class="btn btn-primary">Search</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
