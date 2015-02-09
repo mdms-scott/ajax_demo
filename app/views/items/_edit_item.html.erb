@@ -1,8 +1,0 @@
-<form id="edit_item_form">
-  <div class="form-inline">
-    <label for="item_name">Name</label>
-    <%= text_field_tag :item_name, item.name, name: 'item[name]', class: 'form-control' %>
-    <a id="update_item" class="btn btn-primary" data-item_id=<%= item.id %>>Submit</a>
-    <a id="cancel_edit" class="btn btn-default">Cancel</a>
-  </div>
-</form>
