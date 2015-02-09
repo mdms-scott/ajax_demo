@@ -1,1 +1,1 @@
-rvm use 2.1.4@ajax_demo --create
+rvm use 2.2.0@ajax_demo --create

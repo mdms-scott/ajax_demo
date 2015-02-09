@@ -1,13 +1,13 @@
 // Add a new item!
 $(document).on("click", "#add_item_button", function() {
-  // Make sure the item name field isn't blank
-  if ( $("#item_name").val() != '' ) {
-    // Post the new item to the controller
-    $.post("/items", $("#new_item_form").serialize(), function() {
-      // Clear out the item name field on ajax success
-      $("#item_name").val('');  
-    })
-  }
+  // Post the new item to the controller
+  $.post("/items", $("#new_item_form").serialize(), function() {
+    // Clear out the item name field on ajax success
+    $("#item_name").val('');  
+  })
+  .fail(function(data) {
+    alert(data.responseText)
+  })
 });
 
 // Edit an existing item!
@@ -51,3 +51,22 @@ $(document).on("click", '.remove_item', function() {
 $(document).on("click", "#search_item_button", function() {
   $.get("/items/search", {'search_item_name': $("#search_item_name").val()})
 });
+
+$(document).on("click", ".show_item", function() {
+  $.ajax({
+    url: "/items/" + $(this).data('item_id'),
+    type: "GET",
+    dataType: 'json'
+  })
+  .done(function(data) {
+    $("#search_item_name").val(data.name)
+  })
+})
+
+
+
+
+
+
+
+
