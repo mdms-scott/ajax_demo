@@ -1,3 +1,4 @@
+// Add a new item!
 $(document).on("click", "#add_item_button", function() {
   // Make sure the item name field isn't blank
   if ( $("#item_name").val() != '' ) {
@@ -9,11 +10,14 @@ $(document).on("click", "#add_item_button", function() {
   }
 });
 
+// Edit an existing item!
 $(document).on("click", ".edit_item", function() {
   $.get('/items/' + $(this).data('item_id') + '/edit')
 })
 
+// Update an existing item!
 $(document).on("click", "#update_item", function() {
+  // Make sure the item name field isnt blank
   if ( $("#item_name").val() != '' ) {
     $.ajax({
       url: '/items/' + $(this).data('item_id'),
@@ -23,11 +27,14 @@ $(document).on("click", "#update_item", function() {
   }
 });
 
+// Cancel editing an existing item!
 $(document).on("click", "#cancel_edit", function() {
   $.get('items/new_form');
 })
 
+// Delete an item!
 $(document).on("click", '.remove_item', function() {
+  // Grab the parent <li> element so we can delete it later
   var item = $(this).parent();
   $.ajax({
     url: '/items/' + $(this).data('item_id'),
@@ -35,10 +42,12 @@ $(document).on("click", '.remove_item', function() {
     dataType: 'script'
   })
   .done(function() {
+    // Once the ajax completes successfully, remove the <li>
     item.remove();
   })
 });
 
+// Search for an item!
 $(document).on("click", "#search_item_button", function() {
   $.get("/items/search", {'search_item_name': $("#search_item_name").val()})
 });
